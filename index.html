@@ -18,14 +18,15 @@
   <div id="app" class="fadeIn flex-cc">
     <img id="logo" src="img/SVG/logo_w.svg" width="300px">
   </div>
-  <div class="selector">
-    <form name='Bucket'>
-      <select name="Prefix" id="Prefix" onchange="reload()">
-        <option value="photos">test1</option>
-        <option value="Splatoon2">test2</option>
-        <option value="ZeldaBoW">test3</option>
-    </form>
+  <div class="content" onmouseover="bucket_rotate()" onmouseout="bucket_init()">
+  <div id="bucket" class="bucket_init">
+    <span class="icon icon-bucket"></span>
   </div>
+  <ul>
+    <li onclick="reload('photos')">PHOTO <span class="icon icon-droplet"></span></li>
+    <li onclick="reload('Splatoon2')">Splatoon2 <span class="icon icon-droplet"></span></li>
+  </ul>
+</div>
   <div class="footer">
     <p class="pull-right"><span class="icon icon-github"></span> Made by GitHub Pages</p>
   </div>
