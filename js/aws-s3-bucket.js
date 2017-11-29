@@ -16,16 +16,14 @@ var xmlhttp = new XMLHttpRequest();
 var img = new Image();
 var timerID;
 
-function reload(){
+function reload(prefix){
   clearTimeout(timerID);
-  getBucket();
+  getBucket(prefix);
 }
 
-function getBucket() {
+function getBucket(prefix) {
   var app = document.getElementById('app');
   var logo = document.getElementById('logo');
-  var num = document.Bucket.Prefix.selectedIndex;
-  var prefix = document.Bucket.Prefix.options[num].value;
   var params = {
     Bucket: s3Bucket,
     Prefix: prefix
@@ -80,6 +78,14 @@ function testdocus(data){
   }
 }
 
-window.onload = function(){
-  reload();
+function bucket_rotate(){
+  var bucket = document.getElementById('bucket');
+  bucket.classList.remove('bucket_init');
+  bucket.classList.add('bucket_rotate');
+}
+
+function bucket_init(){
+  var bucket = document.getElementById('bucket');
+  bucket.classList.remove('bucket_rotate');
+  bucket.classList.add('bucket_init');
 }
