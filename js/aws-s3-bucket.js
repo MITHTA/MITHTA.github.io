@@ -12,11 +12,10 @@ var s3 = new AWS.S3({
     Region: s3Region
   }
 });
-var xmlhttp = new XMLHttpRequest();
 var img = new Image();
 var timerID;
 
-function reload(prefix){
+function setPrefix(prefix){
   clearTimeout(timerID);
   getBucket(prefix);
 }
@@ -24,18 +23,26 @@ function reload(prefix){
 function getBucket(prefix) {
   var app = document.getElementById('app');
   var logo = document.getElementById('logo');
+  var box = document.getElementById('box');
   var params = {
     Bucket: s3Bucket,
     Prefix: prefix
   }
   s3.listObjects(params, function(error, data) {
     if (error) throw error
-    console.log(data);
-    (data.Prefix != 'docus') ? rotate(data) : testdocus(data);
+    var pre = data.Prefix;
+    (pre != 'docus') ? viewImages(data) : viewDocus(data);
   });
 }
 
-function rotate(data){
+function init() {
+  app.style.backgroundImage = "";
+  app.classList.add('document');
+  box.innerHTML = "";
+}
+
+function viewImages(data){
+  init();
   var i = 1;
   function change(){
     var params = {
@@ -53,38 +60,42 @@ function rotate(data){
   change();
 }
 
-function testdocus(data){
-  console.log(data);
+function viewDocus(data){
+  init();
   app.classList.remove('flex-cc');
-  for (var i = 1; i < data.length; i++) {
-    var params = {
-      Bucket: s3Bucket,
-      Key: data.Contents[i].Key
-    };
-    var file = s3.getSignedUrl('getObject', params);
+  app.classList.add('document');
+  function getMarkdown(path, date){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', path);
     xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4) {
-        if (xmlhttp.status == 200) {
-          var elem = document.getElementById("app");
-          var md = marked(xmlhttp.responseText);
-          elem.innerHTML = md;
-        } else {
-          alert("status = " + xmlhttp.status);
-        }
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var md = marked(xmlhttp.responseText);
+        box.innerHTML += "<h6>" + date + "</h6>" + md + "<hr>";
       }
-    }
-    xmlhttp.open("GET", file);
+    };
     xmlhttp.send();
   }
+  data.Contents.forEach(function(value, index){
+    if (index > 0) {
+      var xmlhttp = new XMLHttpRequest();
+      var date = value.LastModified;
+      var params = {
+        Bucket: s3Bucket,
+        Key: value.Key
+      };
+      var file = s3.getSignedUrl('getObject', params);
+      getMarkdown(file, date);
+    }
+  });
 }
 
-function bucket_rotate(){
+function bucketRotate(){
   var bucket = document.getElementById('bucket');
   bucket.classList.remove('bucket_init');
   bucket.classList.add('bucket_rotate');
 }
 
-function bucket_init(){
+function bucketInit(){
   var bucket = document.getElementById('bucket');
   bucket.classList.remove('bucket_rotate');
   bucket.classList.add('bucket_init');

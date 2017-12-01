@@ -17,15 +17,18 @@
 <body>
   <div id="app" class="fadeIn flex-cc">
     <img id="logo" src="img/SVG/logo_w.svg" width="300px">
+    <div id="box"></div>
   </div>
-  <div class="content" onmouseover="bucket_rotate()" onmouseout="bucket_init()">
-  <div id="bucket" class="bucket_init">
+  <div class="content" onmouseover="bucketRotate()" onmouseout="bucketInit()">
+  <div id="bucket" class="bucketInit">
     <span class="icon icon-bucket"></span>
   </div>
   <ul>
-    <li onclick="reload('photos')">PHOTO <span class="icon icon-droplet"></span></li>
-    <li onclick="reload('Splatoon2')">Splatoon2 <span class="icon icon-droplet"></span></li>
-    <li onclick="reload('ZeldaBoW')">ZeldaBoW <span class="icon icon-droplet"></span></li>
+    <li class="label">Photos <span class="icon icon-droplet"></span></li>
+    <li onclick="setPrefix('photos')">Camera <span class="icon icon-droplet"></span></li>
+    <li onclick="setPrefix('Splatoon2')">Splatoon2 <span class="icon icon-droplet"></span></li>
+    <li class="label">Docus <span class="icon icon-droplet"></span></li>
+    <li onclick="setPrefix('docus')">Documents <span class="icon icon-droplet"></span></li>
   </ul>
 </div>
   <div class="footer">
