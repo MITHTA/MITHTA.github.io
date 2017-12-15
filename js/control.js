@@ -93,10 +93,11 @@ box.style.zIndex = 1
 box.style.position = 'relative'
 app.appendChild(box)
 
+wall = document.createElement('div')
+wall.id = 'wall'
+box.appendChild(wall)
+
 function setWall(){
-  wall = document.createElement('div')
-  wall.id = 'wall'
-  box.appendChild(wall)
   for (var i = 0; i < colors.length; i++) {
     circle = document.createElement('div')
     circle.id = colors[i]
@@ -111,8 +112,6 @@ function setWall(){
     wall.appendChild(circle)
   }
 }
-
-setWall()
 
 var content = document.createElement('div')
 content.id = 'content'
@@ -156,6 +155,7 @@ function setText(){
 
 function init(){
   timerStop()
+  setWall()
   if (orien == 'Vertical') orientation()
   content.innerHTML = ""
   content.classList.remove('docus')
@@ -262,26 +262,29 @@ function dispImg(data){
   content.style.marginTop = '210px'
   content.style.marginLeft = '-210px'
   content.style.backgroundSize = 'cover'
+  content.style.backgroundPosition = 'center center'
   function change(){
+    clearTimeout(shortTimer)
     var params = {
       Bucket: s3Bucket,
       Key: data.Contents[i].Key
     };
     img.src = s3.getSignedUrl('getObject', params);
     img.onload = function(){
+      wall.innerHTML = ''
       content.style.backgroundImage = 'url(' + img.src + ')';
       (i >= (data.Contents.length - 1)) ? i = 1 : i++ ;
-      timerID = setTimeout(change, 10000);
     }
+    timerID = setTimeout(change, 10000);
   }
   shortTimer = setInterval(change, 3000);
+
 }
 
 function timerStop(){
   clearTimeout(timer)
   clearTimeout(timerID)
   clearTimeout(shortTimer)
-  clearTimeout(rotateTimer)
 }
 
 function dispTxt(data){
