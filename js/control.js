@@ -254,10 +254,12 @@ function dispImg(data){
   logo.style.width = '80px'
   logo.style.top = '20px'
   logo.style.left = '10px'
-  content.style.width = '910px'
-  content.style.height = '490px'
-  content.style.marginTop = '210px'
-  content.style.marginLeft = '-210px'
+  if (userAgent()) {
+    content.style.width = '910px'
+    content.style.height = '490px'
+    content.style.marginTop = '210px'
+    content.style.marginLeft = '-210px'
+  }
   content.style.backgroundSize = 'cover'
   content.style.backgroundPosition = 'center center'
   function change(){
