@@ -254,7 +254,7 @@ function dispImg(data){
   logo.style.width = '80px'
   logo.style.top = '20px'
   logo.style.left = '10px'
-  if (userAgent()) {
+  if (!userAgent()) {
     content.style.width = '910px'
     content.style.height = '490px'
     content.style.marginTop = '210px'
