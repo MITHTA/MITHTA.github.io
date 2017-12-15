@@ -127,7 +127,7 @@ var logo = document.createElement('img')
 logo.id = 'logo'
 logo.src = 'img/SVG/logo.svg'
 logo.style.width = '180px'
-logo.style.transition = 'all 1s;'
+logo.style.transition = 'all 1s'
 logo.style.position = 'absolute'
 logo.style.top = ((box.clientHeight/2) - 50) + 'px'
 logo.style.left = ((box.clientWidth/2) - 90) + 'px'
@@ -156,6 +156,7 @@ function setText(){
 function init(){
   timerStop()
   setWall()
+  rotate()
   if (orien == 'Vertical') orientation()
   content.innerHTML = ""
   content.classList.remove('docus')
@@ -202,8 +203,6 @@ function rotate(){
   rotateTimer = setTimeout(rotate, 60000)
 }
 
-rotate()
-
 function setPrefix(prefix){
   timerStop()
   content.style.backgroundImage = 'none'
@@ -218,8 +217,7 @@ function getBucket(prefix) {
   }
   s3.listObjects(params, function(error, data) {
     if (error) throw error
-    pref = data.Prefix
-    console.log(pref);
+    pref = data.Prefix;
     (pref != 'docus') ? dispImg(data) : dispTxt(data)
   })
 }
@@ -248,12 +246,11 @@ function orientation() {
     }
     content.style.borderRadius = '30px'
   }
-  console.log(orien)
 }
 
 function dispImg(data){
   if (orien = 'Horizontal') orientation()
-  var i = 1;
+  var i = 1
   logo.style.width = '80px'
   logo.style.top = '20px'
   logo.style.left = '10px'
@@ -268,17 +265,17 @@ function dispImg(data){
     var params = {
       Bucket: s3Bucket,
       Key: data.Contents[i].Key
-    };
-    img.src = s3.getSignedUrl('getObject', params);
+    }
+    img.src = s3.getSignedUrl('getObject', params)
     img.onload = function(){
       wall.innerHTML = ''
+      clearTimeout(rotateTimer)
       content.style.backgroundImage = 'url(' + img.src + ')';
-      (i >= (data.Contents.length - 1)) ? i = 1 : i++ ;
+      (i >= (data.Contents.length - 1)) ? i = 1 : i++
     }
-    timerID = setTimeout(change, 10000);
+    timerID = setTimeout(change, 10000)
   }
-  shortTimer = setInterval(change, 3000);
-
+  shortTimer = setInterval(change, 3000)
 }
 
 function timerStop(){
@@ -288,7 +285,7 @@ function timerStop(){
 }
 
 function dispTxt(data){
-  init();
+  init()
   timerStop()
   wall.innerHTML = ''
   content.innerHTML = ''
@@ -296,16 +293,16 @@ function dispTxt(data){
   content.style.padding = '1em'
   content.classList.add('docus')
   function getMarkdown(path, date){
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', path);
+    var xmlhttp = new XMLHttpRequest()
+    xmlhttp.open('GET', path)
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var md = marked(xmlhttp.responseText);
+        var md = marked(xmlhttp.responseText)
         var icon = '<i class="fas fa-calendar-alt fa-fw"></i>'
-        content.innerHTML += "<h6>" + icon + date + "</h6>" + md + "<hr>";
+        content.innerHTML += "<h6>" + icon + date + "</h6>" + md + "<hr>"
       }
-    };
-    xmlhttp.send();
+    }
+    xmlhttp.send()
   }
   data.Contents.forEach(function(value, index){
     if (index > 0) {
@@ -314,11 +311,11 @@ function dispTxt(data){
       var params = {
         Bucket: s3Bucket,
         Key: value.Key
-      };
-      var file = s3.getSignedUrl('getObject', params);
-      getMarkdown(file, date);
+      }
+      var file = s3.getSignedUrl('getObject', params)
+      getMarkdown(file, date)
     }
-  });
+  })
 }
 
 menu.onclick = function() {
