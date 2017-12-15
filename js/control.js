@@ -210,15 +210,15 @@ function setPrefix(prefix){
 }
 
 function getBucket(prefix) {
-  if(pref != prefix) clearTimeout(timerID)
+  if (pref != prefix) clearTimeout(timerID)
   var params = {
     Bucket: s3Bucket,
     Prefix: prefix
   }
   s3.listObjects(params, function(error, data) {
     if (error) throw error
-    pref = data.Prefix;
-    (pref != 'docus') ? dispImg(data) : dispTxt(data)
+    pref = data.Prefix
+    ;(pref != 'docus') ? dispImg(data) : dispTxt(data)
   })
 }
 
@@ -270,8 +270,8 @@ function dispImg(data){
     img.onload = function(){
       wall.innerHTML = ''
       clearTimeout(rotateTimer)
-      content.style.backgroundImage = 'url(' + img.src + ')';
-      (i >= (data.Contents.length - 1)) ? i = 1 : i++
+      content.style.backgroundImage = 'url(' + img.src + ')'
+      ;(i >= (data.Contents.length - 1)) ? i = 1 : i++
     }
     timerID = setTimeout(change, 10000)
   }
@@ -306,8 +306,8 @@ function dispTxt(data){
   }
   data.Contents.forEach(function(value, index){
     if (index > 0) {
-      var xmlhttp = new XMLHttpRequest();
-      var date = value.LastModified;
+      var xmlhttp = new XMLHttpRequest()
+      var date = value.LastModified
       var params = {
         Bucket: s3Bucket,
         Key: value.Key
