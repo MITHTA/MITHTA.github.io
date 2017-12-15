@@ -11,10 +11,7 @@ var s3 = new AWS.S3({
   }
 })
 var img = new Image()
-var timerID
-var timer
-var rotateTimer
-var shortTimer
+var timerID,timer,rotateTimer,shortTimer
 var pref
 var ii = 0
 var orien = 'Horizontal'
@@ -52,8 +49,8 @@ var hello = [
   'नमस्ते'
 ]
 
-var wall
-var circle
+var wall,circle
+
 var home = '<i class="fas fa-home fa-inverse" onclick="init()" name="icon"></i>'
 var camera = '<i class="fas fa-camera-retro fa-inverse" onclick="setPrefix(\'photos\')" name="icon"></i>'
 var game = '<i class="fas fa-gamepad fa-inverse" onclick="setPrefix(\'Splatoon2\')" name="icon"></i>'
@@ -199,7 +196,7 @@ function rotate(){
     circle.style.width = width
     circle.style.height = height
     circle.style.borderRadius = radius
-    circle.style.transform = 'rotate('+int+'deg)'
+    circle.style.transform = 'rotate(' + int + 'deg)'
   }
   rotateTimer = setTimeout(rotate, 60000)
 }
@@ -245,7 +242,6 @@ function orientation() {
     for (var i = 0; i < icons.length; i++) {
       icons[i].style.transform = (orien == 'Vertical') ? 'rotate(90deg)' : 'rotate(0deg)'
     }
-    content.style.borderRadius = '30px'
   }
 }
 
