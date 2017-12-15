@@ -168,6 +168,7 @@ function init(){
   logo.style.width = '180px'
   logo.style.top = ((box.clientHeight/2) - 50) + 'px'
   logo.style.left = ((box.clientWidth/2) - 90) + 'px'
+  text.style.top = ((box.clientHeight/2) + 50) + 'px'
   content.appendChild(logo)
   content.appendChild(text)
   setText()
@@ -254,6 +255,7 @@ function dispImg(data){
   logo.style.width = '80px'
   logo.style.top = '20px'
   logo.style.left = '10px'
+  text.style.top = (box.clientHeight + 50) + 'px'
   if (!userAgent()) {
     content.style.width = '910px'
     content.style.height = '490px'
