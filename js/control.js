@@ -126,7 +126,7 @@ box.appendChild(content)
 
 var logo = document.createElement('img')
 logo.id = 'logo'
-logo.src = 'img/svg/logo.svg'
+logo.src = 'img/SVG/logo.svg'
 logo.style.width = '180px'
 logo.style.transition = 'all 1s;'
 logo.style.position = 'absolute'
