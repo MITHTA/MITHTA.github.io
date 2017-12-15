@@ -115,7 +115,7 @@ content.id = 'content'
 content.style.transition = 'all 1s'
 content.style.width = '100%'
 content.style.height = '100%'
-content.style.overflow = 'scroll'
+content.style.overflow = 'hidden'
 content.style.borderRadius = '30px'
 content.style.zIndex = '3'
 box.appendChild(content)
