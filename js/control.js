@@ -139,14 +139,27 @@ text.style.transition = 'all 1s'
 text.style.fontWeight = 'lighter'
 text.style.zIndex = 4
 
+var prog = document.createElement('i')
+prog.id = 'prog'
+prog.classList.add('fas','fa-spinner','fa-pulse')
+prog.style.fontSize = '1.5em'
+prog.style.color = '#fff'
+prog.style.opacity = 0.5
+prog.style.position = 'absolute'
+// prog.style.top = ((content.clientWidth/2) - 0) + 'px'
+// prog.style.left = ((content.clientHeight/2) - 0) + 'px'
+prog.style.bottom = '20px'
+prog.style.left = '20px'
+
+function progress(){
+  var progress = document.getElementById('prog')
+  ;(progress) ? content.removeChild(progress) : content.appendChild(prog)
+}
+
 function setText(){
   var text = document.getElementById('text')
   text.innerText = hello[ii]
-  if (ii < (hello.length - 1)) {
-    ii++
-  } else {
-    ii = 0
-  }
+  ;(ii < (hello.length - 1)) ? ii++ : ii = 0
   timer = setTimeout(setText, 5000)
 }
 
@@ -248,9 +261,9 @@ function orientation() {
 function dispImg(data){
   if (orien = 'Horizontal') orientation()
   var i = 1
-  logo.style.width = '80px'
-  logo.style.top = '20px'
-  logo.style.left = '10px'
+  logo.style.width = '50px'
+  logo.style.top = '30px'
+  logo.style.left = '20px'
   text.style.top = (box.clientHeight + 50) + 'px'
   if (!userAgent()) {
     content.style.width = '910px'
@@ -261,6 +274,7 @@ function dispImg(data){
   content.style.backgroundSize = 'cover'
   content.style.backgroundPosition = 'center center'
   function change(){
+    progress()
     clearTimeout(shortTimer)
     var params = {
       Bucket: s3Bucket,
@@ -268,6 +282,7 @@ function dispImg(data){
     }
     img.src = s3.getSignedUrl('getObject', params)
     img.onload = function(){
+      progress()
       wall.innerHTML = ''
       clearTimeout(rotateTimer)
       content.style.backgroundImage = 'url(' + img.src + ')'
@@ -285,8 +300,8 @@ function timerStop(){
 }
 
 function dispTxt(data){
-  init()
-  timerStop()
+  // init()
+  // timerStop()
   wall.innerHTML = ''
   content.innerHTML = ''
   content.style.textAlign = 'left'

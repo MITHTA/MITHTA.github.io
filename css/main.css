@@ -11,7 +11,7 @@ font-family: "Mplus 1p", system, -apple-system, ".SFNSDisplay-Regular", "Helveti
   bottom: 20px;
   width: 60%;
   height: 10px;
-  background-color: #353535;
+  background-color: rgba(20,20,20, .7);
   border-radius: 30px;
   transition: all .5s;
   font-size: 28px;
@@ -19,6 +19,7 @@ font-family: "Mplus 1p", system, -apple-system, ".SFNSDisplay-Regular", "Helveti
   justify-content: center;
   align-items: center;
   z-index: 5;
+  -webkit-backdrop-filter:contrast(4) blur(20px);
 }
 
 #menu svg,
