@@ -92,7 +92,8 @@ function setWall(){
     circle.id = colors[i]
     circle.name = 'circle'
     circle.style.opacity = .1
-    circle.style.backgroundColor = colors[i]
+    // circle.style.backgroundColor = colors[i]
+    circle.style.border = '1px solid ' + colors[i]
     circle.style.transition = 'all 60s'
     circle.style.position = 'absolute'
     circle.style.top = (app.clientHeight / 1.2) + 'px'
@@ -191,7 +192,7 @@ function setMenu() {
 setMenu()
 
 function rotate(){
-  for (var i = 0; i < colors.length; i++) {
+  for (var i = 0; i < (colors.length - 1); i++) {
     circle = document.getElementById(colors[i])
     var int = Math.floor( Math.random() * 361 )
     var width = Math.floor( Math.random() * (5000 + 1 - 4700) ) + 4700 + 'px'

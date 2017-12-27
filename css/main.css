@@ -7,9 +7,9 @@ font-family: "Mplus 1p", system, -apple-system, ".SFNSDisplay-Regular", "Helveti
 }
 #menu {
   position: absolute;
-  left: 20%;
-  bottom: 20px;
-  width: 60%;
+  left: 10%;
+  bottom: 5%;
+  width: 80%;
   height: 10px;
   background-color: rgba(20,20,20, .7);
   border-radius: 30px;
