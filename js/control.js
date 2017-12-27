@@ -74,16 +74,8 @@ var box = document.createElement('div')
 box.id = 'box'
 box.style.transition = 'all 1s'
 box.style.backgroundColor = '#fff'
-if (!userAgent()) {
-  // PC, Mac
-  box.style.width = '480px'
-  box.style.height = '900px'
-  box.style.borderRadius = '30px'
-} else {
-  // iPhone, iPad, Android
-  box.style.width = '100%'
-  box.style.height = '100%'
-}
+box.style.width = '100%'
+box.style.height = '100%'
 box.style.overflow = 'hidden'
 box.style.textAlign = 'center'
 box.style.zIndex = 1
@@ -116,7 +108,6 @@ content.style.transition = 'all 1s'
 content.style.width = '100%'
 content.style.height = '100%'
 content.style.overflow = 'hidden'
-content.style.borderRadius = '30px'
 content.style.zIndex = '3'
 box.appendChild(content)
 
@@ -259,18 +250,12 @@ function orientation() {
 }
 
 function dispImg(data){
-  if (orien = 'Horizontal') orientation()
+  // if (orien = 'Horizontal') orientation()
   var i = 1
   logo.style.width = '50px'
   logo.style.top = '30px'
   logo.style.left = '20px'
   text.style.top = (box.clientHeight + 50) + 'px'
-  if (!userAgent()) {
-    content.style.width = '910px'
-    content.style.height = '490px'
-    content.style.marginTop = '210px'
-    content.style.marginLeft = '-210px'
-  }
   content.style.backgroundSize = 'cover'
   content.style.backgroundPosition = 'center center'
   function change(){
