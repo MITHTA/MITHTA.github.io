@@ -74,10 +74,10 @@ h1[name="hello"] {
 }
 
 object[name="logo"] {
-  width: 15%;
+  width: 15em;
   position: absolute;
   top: 30%;
-  left: 42.5%;
+  left: calc((100% - 15em)/2);
 }
 
 object.change-position {
