@@ -1,0 +1,32 @@
+
+@-webkit-keyframes change-position {
+  to { position: absolute; top: 0; left: 0; -webkit-transform: scale(.5); transform: scale(.5); }
+}
+
+@keyframes change-position {
+  to { position: absolute; top: 0; left: 0; -webkit-transform: scale(.5); transform: scale(.5); }
+}
+
+@-webkit-keyframes logo-animation {
+  from { opacity: 0; -webkit-transform: scale(2); transform: scale(2); }
+  to% { opacity: 1; -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@keyframes logo-animation {
+  from { opacity: 0; -webkit-transform: scale(2); transform: scale(2); }
+  to% { opacity: 1; -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@-webkit-keyframes mushroom {
+  10% { opacity: .8; top: -10px; right: 20px; }
+  15% { top: -10px; right: 50px; }
+  35% { right: 50px; top: calc(100% - 26px); }
+  100% { top: calc(100% - 26px); right: calc(100%); }
+}
+
+@keyframes mushroom {
+  10% { opacity: .8; top: -10px; right: 20px; }
+  15% { top: -10px; right: 50px; }
+  35% { right: 50px; top: calc(100% - 26px); }
+  100% { top: calc(100% - 26px); right: calc(100%); }
+}

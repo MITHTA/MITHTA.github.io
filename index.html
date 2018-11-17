@@ -4,16 +4,33 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="photon/css/photon.css" type="text/css" rel="stylesheet" />
-  <link href="css/main.css" type="text/css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
-  <script src="js/aws-sdk.min.js"></script>
-  <script src="js/amazon-cognito.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
   <title>mithta.github.io</title>
+  <link href="./assets/css/common.css" type="text/css" rel="stylesheet" />
+  <link href="./assets/css/animation.css" type="text/css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+  <script src="./assets/js/aws-sdk.min.js"></script>
+  <script src="./assets/js/amazon-cognito.min.js"></script>
 </head>
 <body>
-  <script src="js/control.js"></script>
+  <object id="mushroom" type="image/svg+xml" data="./assets/img/svg/mushroom.svg" class="mushroom"></object>
+  <header>
+    <div name="prefix">?</div>
+  </header>
+  <main>
+    <div>
+      <object name="logo" type="image/svg+xml" data="./assets/img/svg/logo.svg" width="200" class="drop-shadow logo-animation"></object>
+      <h1 name="hello" class="drop-shadow"></h1>
+    </div>
+  </main>
+  <footer>
+    <div class="control drop-shadow">
+      <div name="previous">◀︎◀︎</div>
+      <div name="stop">〓</div>
+      <div name="start" class="selected">▶︎</div>
+      <div name="next">▶︎▶︎</div>
+    </div>
+    <div name="file-count"></div>
+  </footer>
+  <script src="./assets/js/index.js" charset="utf-8"></script>
 </body>
 </html>
